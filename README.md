@@ -1,0 +1,1 @@
+Learning Embedded from "Real-Time Bluetooth Networks - Shape the World" course from edx
