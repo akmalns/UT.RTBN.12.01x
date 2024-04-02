@@ -1,0 +1,137 @@
+build:
+  generated-by: csolution version 2.2.0
+  solution: Lab1.csolution.yml
+  project: Lab1.cproject.yml
+  context: Lab1+Target
+  compiler: AC6@6.21.0
+  device: TM4C123GH6PM
+  device-pack: Keil::TM4C_DFP@1.1.0
+  processor:
+    endian: little
+    fpu: off
+    core: Cortex-M4
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0
+    - pack: Keil::TM4C_DFP@1.1.0
+      path: ${CMSIS_PACK_ROOT}/Keil/TM4C_DFP/1.1.0
+  optimize: none
+  debug: on
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -std=c99
+      - -fno-rtti
+      - -fsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    CPP:
+      - -xc++
+      - -std=c++11
+      - -fno-rtti
+      - -fsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    Link:
+      - --map
+      - --load_addr_map_info
+      - --xref
+      - --callgraph
+      - --symbols
+      - --info sizes
+      - --info totals
+      - --info unused
+      - --info veneers
+      - --strict
+      - --summary_stderr
+      - --info summarysizes
+  define:
+    - TM4C123GH6PM
+    - _RTE_
+  add-path:
+    - ../inc
+    - RTE/_Target
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123
+  output-dirs:
+    intdir: tmp/Lab1/Target
+    outdir: out/Lab1/Target
+    rtedir: RTE
+  output:
+    - type: elf
+      file: Lab1.axf
+  components:
+    - component: ARM::CMSIS:CORE@5.6.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS:CORE
+    - component: Keil::Device:Startup@1.0.1
+      condition: TM4C123x CMSIS
+      from-pack: Keil::TM4C_DFP@1.1.0
+      selected-by: Keil::Device:Startup
+      files:
+        - file: RTE/Device/TM4C123GH6PM/startup_TM4C123.s
+          category: source
+          attr: config
+          version: 1.0.0
+        - file: RTE/Device/TM4C123GH6PM/system_TM4C123.c
+          category: source
+          attr: config
+          version: 1.0.1
+  linker:
+    script: RTE/Device/TM4C123GH6PM/ac6_linker_script.sct.src
+    regions: RTE/Device/TM4C123GH6PM/regions_TM4C123GH6PM.h
+  groups:
+    - group: Source
+      files:
+        - file: Lab1.c
+          category: sourceC
+        - file: ../inc/BSP.c
+          category: sourceC
+        - file: ../inc/Profile.c
+          category: sourceC
+    - group: Object
+      files:
+        - file: texas.o
+          category: object
+  constructed-files:
+    - file: RTE/_Target/RTE_Components.h
+      category: header
+  licenses:
+    - license: <unknown>
+      packs:
+        - pack: ARM::CMSIS@5.9.0
+      components:
+        - component: ARM::CMSIS:CORE@5.6.0
+    - license: <unknown>
+      packs:
+        - pack: Keil::TM4C_DFP@1.1.0
+      components:
+        - component: Keil::Device:Startup@1.0.1

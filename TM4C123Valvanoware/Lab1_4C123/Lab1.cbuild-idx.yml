@@ -1,0 +1,9 @@
+build-idx:
+  generated-by: csolution version 2.2.0
+  csolution: Lab1.csolution.yml
+  cprojects:
+    - cproject: Lab1.cproject.yml
+  cbuilds:
+    - cbuild: Lab1+Target.cbuild.yml
+      project: Lab1
+      configuration: +Target
